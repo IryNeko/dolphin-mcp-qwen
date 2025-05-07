@@ -1,8 +1,12 @@
-# Dolphin MCP
+# Dolphin MCP Qwen
 
-A flexible Python library and CLI tool for interacting with Model Context Protocol (MCP) servers using any LLM model.
+A modified Dolphin MCP server that uses free tool callers, mainly Qwen2.5, for the ease of offline deployment and use
+修改版本的Dolphin MCP server，可以使用Qwen2.5之类的工具进行使用
 
-![image](https://github.com/user-attachments/assets/d0ee1159-2a8f-454d-8fba-cf692f425af9)
+## Important Changes 主要修改
+1. Qwen2.5 reply tool call parameter is a dict such as {"A":"value"}, but Claude tool call parameter is a json string as "{\"A\":\"value\"}"
+      The calling is changed, so json and dict, both are accepted as parameters, now qwen2 by ollama could be used.
+      总之通过修改传入参数，现在qwen2可以被使用了 
 
 ## Overview
 
