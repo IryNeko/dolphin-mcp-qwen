@@ -414,9 +414,14 @@ async def log_messages_to_file(messages: List[Dict], functions: List[Dict], log_
 async def process_tool_call(tc: Dict, servers: Dict[str, MCPClient], quiet_mode: bool) -> Optional[Dict]:
     """Process a single tool call and return the result"""
     func_name = tc["function"]["name"]
-    func_args_str = tc["function"].get("arguments", "{}")
+    func_args_input = tc["function"].get("arguments", "{}")
     try:
-        func_args = json.loads(func_args_str)
+       if isinstance(func_args_input,str):
+           func_args = json.loads(func_args_input)
+       elif isinstance(func_args_input,dict):
+           func_args = func_args_input
+       else:
+           func_args = {}
     except:
         func_args = {}
 
